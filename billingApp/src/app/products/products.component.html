@@ -1,0 +1,31 @@
+<br>
+<div class="container">
+<div class="col-md-12" *ngIf="products">
+  <h2 style="margin: auto"> Product Details</h2>
+  <div class="text-right my-2">
+    <button class="btn btn-info" routerLink="/products/get">Add new product</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.price}}</td>
+      <td>
+        <button class="btn btn-success" routerLink="/products/get/{{p.id}}">Edit</button> &nbsp;
+        <button class="btn btn-danger" (click)="deleteProduct(p.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+

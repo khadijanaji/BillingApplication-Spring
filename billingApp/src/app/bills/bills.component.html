@@ -1,0 +1,38 @@
+<br>
+<div class="container">
+<div class="col-md-12" *ngIf="bills">
+  <h2 style="margin: auto"> Bill Details</h2>
+  <div class="text-right my-2">
+    <button class="btn btn-info" routerLink="/bills/get/">Add new bill</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>DATE</th>
+      <th>CUSTOMER</th>
+      <th>PRODUCTS</th>
+      <th>ACTIONS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of bills">
+      <td>{{p.id}}</td>
+      <td>{{p.billingdate | date:"dd MMMM yyyy - hh:mm a"}}</td>
+      <td *ngIf="p.customer" >{{p.customer.name}}</td>
+      <td *ngIf="p.productItems.length>0">
+        <ul *ngFor="let productitem of p.productItems">
+          <li>{{productitem.product.name}}</li>
+        </ul>
+      </td>
+      <td *ngIf="p.productItems.length==0">No Products Yet</td>
+      <td>
+        <button class="btn btn-success" routerLink="/bills/get/{{p.id}}">Edit</button> &nbsp;
+        <button class="btn btn-danger" (click)="deleteBill(p.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
